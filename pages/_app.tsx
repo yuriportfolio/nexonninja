@@ -31,63 +31,25 @@ import {
   posthogConfig,
   posthogId
 } from '@/lib/config'
-import { GA_TRACKING_ID } from '../utils/gtag'
-
 if (!isServer) {
   bootstrap()
 }
 
-export default function App({ Component, pageProps }: AppProps) {
-  const router = useRouter()
 
-  React.useEffect(() => {
+const App = ({ Component, pageProps }: AppProps) => {
+  const router = useRouter();
 
-    function onRouteChangeComplete() {
-      if (fathomId) {
-        Fathom.trackPageview()
-      }
-
-      if (posthogId) {
-        posthog.capture('$pageview')
-      }
-    }
-
-    if (fathomId) {
-      Fathom.load(fathomId, fathomConfig)
-    }
-
-    if (posthogId) {
-      posthog.init(posthogId, posthogConfig)
-    }
-
-    router.events.on('routeChangeComplete', onRouteChangeComplete)
-
+  useEffect(() => {
+    const handleRouteChange = (url: URL) => {
+      gtag.pageview(url);
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
     return () => {
-      router.events.off('routeChangeComplete', onRouteChangeComplete)
-    }
-  }, [router.events])
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
 
-  // Google Analytics support.
-  return (
-    <>
-      {googleAnalyticsID && (
-        <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-            strategy='afterInteractive'
-          />
-          <Script id='google-analytics' strategy='afterInteractive'>
-            {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
+  return <Component {...pageProps} />;
+};
 
-          gtag('config', '${GA_TRACKING_ID}');
-        `}
-          </Script>
-        </>
-      )}
-      <Component {...pageProps} />
-    </>
-  )
-}
+export default App;
