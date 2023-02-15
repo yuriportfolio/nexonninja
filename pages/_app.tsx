@@ -24,12 +24,8 @@ import 'styles/prism-theme.css'
 
 import { bootstrap } from '@/lib/bootstrap-client'
 import {
-  fathomConfig,
-  fathomId,
   googleAnalyticsID,
   isServer,
-  posthogConfig,
-  posthogId
 } from '@/lib/config'
 
 if (!isServer) {
