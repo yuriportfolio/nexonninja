@@ -43,24 +43,7 @@ export default function App({ Component, pageProps }: AppProps) {
     const handleRouteChange = (url: URL) => {
       gtag.pageview(url);
     };
-    function onRouteChangeComplete() {
-      if (fathomId) {
-        Fathom.trackPageview()
-      }
-
-      if (posthogId) {
-        posthog.capture('$pageview')
-      }
-    }
-
-    if (fathomId) {
-      Fathom.load(fathomId, fathomConfig)
-    }
-
-    if (posthogId) {
-      posthog.init(posthogId, posthogConfig)
-    }
-  
+    
     router.events.on('routeChangeComplete', handleRouteChange)
 
     return () => {
