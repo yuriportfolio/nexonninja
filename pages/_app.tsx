@@ -3,6 +3,7 @@ import * as React from 'react'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
+import * as gtag from "../utils/gtag";
 
 import * as Fathom from 'fathom-client'
 // used for rendering equations (optional)
@@ -39,6 +40,9 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   React.useEffect(() => {
+    const handleRouteChange = (url: URL) => {
+      gtag.pageview(url);
+    };
     function onRouteChangeComplete() {
       if (fathomId) {
         Fathom.trackPageview()
@@ -56,11 +60,11 @@ export default function App({ Component, pageProps }: AppProps) {
     if (posthogId) {
       posthog.init(posthogId, posthogConfig)
     }
-
-    router.events.on('routeChangeComplete', onRouteChangeComplete)
+  
+    router.events.on('routeChangeComplete', handleRouteChange)
 
     return () => {
-      router.events.off('routeChangeComplete', onRouteChangeComplete)
+      router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [router.events])
 
