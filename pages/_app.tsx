@@ -1,5 +1,7 @@
 // global styles shared across the entire site
 import * as React from 'react'
+import type { AppProps } from 'next/app'
+import { useRouter } from 'next/router'
 import Script from 'next/script'
 
 import * as Fathom from 'fathom-client'
@@ -18,10 +20,7 @@ import 'styles/global.css'
 import 'styles/notion.css'
 // global style overrides for prism theme (optional)
 import 'styles/prism-theme.css'
-import { useEffect } from "react";
-import { AppProps } from "next/app";
-import { useRouter } from "next/router";
-import * as gtag from "../utils/gtag";
+
 import { bootstrap } from '@/lib/bootstrap-client'
 import {
   fathomConfig,
@@ -31,25 +30,61 @@ import {
   posthogConfig,
   posthogId
 } from '@/lib/config'
+
 if (!isServer) {
   bootstrap()
 }
 
+export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter()
 
-const App = ({ Component, pageProps }: AppProps) => {
-  const router = useRouter();
+  React.useEffect(() => {
+    function onRouteChangeComplete() {
+      if (fathomId) {
+        Fathom.trackPageview()
+      }
 
-  useEffect(() => {
-    const handleRouteChange = (url: URL) => {
-      gtag.pageview(url);
-    };
-    router.events.on("routeChangeComplete", handleRouteChange);
+      if (posthogId) {
+        posthog.capture('$pageview')
+      }
+    }
+
+    if (fathomId) {
+      Fathom.load(fathomId, fathomConfig)
+    }
+
+    if (posthogId) {
+      posthog.init(posthogId, posthogConfig)
+    }
+
+    router.events.on('routeChangeComplete', onRouteChangeComplete)
+
     return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router.events]);
+      router.events.off('routeChangeComplete', onRouteChangeComplete)
+    }
+  }, [router.events])
 
-  return <Component {...pageProps} />;
-};
+  // Google Analytics support.
+  return (
+    <>
+      {googleAnalyticsID && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsID}`}
+            strategy='afterInteractive'
+          />
+          <Script id='google-analytics' strategy='afterInteractive'>
+            {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-export default App;
+          gtag('config', '${googleAnalyticsID}');
+        `}
+          </Script>
+        </>
+      )}
+      <Component {...pageProps} />
+    </>
+  )
+}
