@@ -1,7 +1,5 @@
 // global styles shared across the entire site
 import * as React from 'react'
-import type { AppProps } from 'next/app'
-import { useRouter } from 'next/router'
 import Script from 'next/script'
 
 import * as Fathom from 'fathom-client'
@@ -20,7 +18,10 @@ import 'styles/global.css'
 import 'styles/notion.css'
 // global style overrides for prism theme (optional)
 import 'styles/prism-theme.css'
-
+import { useEffect } from "react";
+import { AppProps } from "next/app";
+import { useRouter } from "next/router";
+import * as gtag from "../utils/gtag";
 import { bootstrap } from '@/lib/bootstrap-client'
 import {
   fathomConfig,
@@ -30,6 +31,7 @@ import {
   posthogConfig,
   posthogId
 } from '@/lib/config'
+import { GA_TRACKING_ID } from '../utils/gtag'
 
 if (!isServer) {
   bootstrap()
@@ -39,6 +41,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   React.useEffect(() => {
+
     function onRouteChangeComplete() {
       if (fathomId) {
         Fathom.trackPageview()
@@ -70,7 +73,7 @@ export default function App({ Component, pageProps }: AppProps) {
       {googleAnalyticsID && (
         <>
           <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsID}`}
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
             strategy='afterInteractive'
           />
           <Script id='google-analytics' strategy='afterInteractive'>
@@ -79,7 +82,7 @@ export default function App({ Component, pageProps }: AppProps) {
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', '${googleAnalyticsID}');
+          gtag('config', '${GA_TRACKING_ID}');
         `}
           </Script>
         </>

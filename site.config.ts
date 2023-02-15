@@ -14,15 +14,15 @@ export default siteConfig({
   rootNotionSpaceId: null,
 
   // basic site info (required)
-  name: 'FKYnJYQ',
-  domain: 'nexon-demo.vercel.app',
-  author: 'Feng Kaiyu',
+  name: 'yuri_portfolio',
+  domain: 'gagarin.ninja',
+  author: 'Yuri',
 
   // open graph metadata (optional)
   description: 'Code for Good.',
 
   // social usernames (optional)
-  twitter: 'UA_Yuri_Gaagarin',
+  twitter: 'Yuri_Gagarin_UA',
   github: 'yuriportfolio',
   linkedin: '',
   // mastodon: '#', // optional mastodon profile URL, provides link verification

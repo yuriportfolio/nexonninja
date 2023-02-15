@@ -1,15 +1,32 @@
 import * as React from 'react'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
-
+import { GA_TRACKING_ID } from "../utils/gtag";
 import { IconContext } from '@react-icons/all-files'
 
 export default class MyDocument extends Document {
   render() {
     return (
       <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
-        <Html lang='en'>
-          <Head>
-            <link rel='shortcut icon' href='/favicon.ico' />
+      <Html lang='en'>
+        <Head>
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_TRACKING_ID}', {
+                page_path: window.location.pathname,
+              });
+          `
+            }}
+          />
+                   <link rel='shortcut icon' href='/favicon.ico' />
             <link
               rel='icon'
               type='image/png'
