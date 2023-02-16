@@ -40,8 +40,7 @@
 }
 
 .notion-gallery-grid {
-  grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
-  grid-gap: 6vmin;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 6vmin;
 }
 
@@ -72,12 +71,13 @@
 
 .notion-collection-card-cover img {
   border-radius: 16px;
+  border-image-outset: 0px;
  background-blend-mode: normal;
 
 }
 
 .notion-collection-card {
-  overflow: visible;
+  overflow: hidden;
 }
 
 .notion-collection-card-cover {
@@ -98,9 +98,9 @@
 }
 .notion-collection-card-cover img:hover {
   transition-timing-function: ease-in-out;
-  border-radius: 50px;
-  background-blend-mode: difference;
-  transition-property: background-blend-mode, border-radius;
+  background-blend-mode: hue;
+  border-image-outset: 50px;
+  transition-property: background-blend-mode, border-image-outset;
   transition-duration: 200ms;
 }
 .notion-collection-card:hover .notion-collection-card-cover {
