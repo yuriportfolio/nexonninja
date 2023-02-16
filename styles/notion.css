@@ -101,7 +101,7 @@
   background-image: linear-gradient(90.68deg, #31cdec 0.26%, #e533e5 102.37%);
   background-repeat: no-repeat;
   background-position: 0 100%;
-  background-size: 110% -0.1rem;
+  background-size: 110% 0.1rem;
 
   transition-property: background-position, background-size, box-shadow, filter;
   transition-duration: 300ms;
@@ -117,13 +117,14 @@
   background-size: 0 0.1rem;
 
 }
-.notion-collection-card-body:hover {
+.notion-collection-card:hover .notion-collection-card-body {
   padding: 10px;
   border-bottom-color: transparent;
   background-image: linear-gradient(90.68deg, #31cdec 0.26%, #e533e5 102.37%);
   background-repeat: no-repeat;
   background-position: 0 100%;
-  background-size: 110% 0.1rem;
+  background-size: 90% 0.15rem;
+  align-content: last baseline;
 
   transition-property: background-position, background-size;
   transition-duration: 300ms;
