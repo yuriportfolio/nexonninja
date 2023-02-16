@@ -2,7 +2,7 @@
   @apply bg-white dark:bg-black;
 }
 .notion-collection-card {
-  @apply bg-white dark:bg-slate-800 shadow-md hover:bg-cyan hover:shadow-lg duration-150 ease-out hover:scale-105 focus:shadow-xl transition-all ease-in-out duration-500;
+  @apply bg-white dark:bg-slate-800 shadow-md hover:bg-white hover:shadow-lg duration-150 ease-out hover:scale-105 focus:shadow-xl transition-all ease-in-out duration-500;
 }
 
 .notion-link {
