@@ -56,7 +56,7 @@
 .notion-gallery-grid .notion-collection-card-property {
   white-space: unset;
   text-overflow: unset;
-  text-align: center;
+  text-align: left;
 }
 
 .notion-gallery-grid .notion-property-text {
