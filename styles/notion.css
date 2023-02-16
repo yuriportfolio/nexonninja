@@ -100,8 +100,8 @@
   box-shadow: none;
   background-image: linear-gradient(90.68deg, #31cdec 0.26%, #e533e5 102.37%);
   background-repeat: no-repeat;
-  background-position: -20 100%;
-  background-size: 110% 0.1rem;
+  background-position: 0 100%;
+  background-size: 150% 0.5rem;
 
   transition-property: background-position, background-size, box-shadow, filter;
   transition-duration: 300ms;
