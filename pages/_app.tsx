@@ -37,7 +37,7 @@ if (!isServer) {
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
   
- useEffect(() => {
+ React.useEffect(() => {
   const handleRouteChange = (url: URL) => {
     if (gtag) {
 
