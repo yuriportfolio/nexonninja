@@ -71,8 +71,7 @@
 
 .notion-collection-card-cover img {
   border-radius: 16px;
-  background-position: y 0;
-  background-position-y: 0px;
+ background-blend-mode: normal;
 
 }
 
@@ -97,12 +96,11 @@
   background-size: 0 0.1rem;
 }
 .notion-collection-card-cover img:hover {
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: ease-in-out;
   border-radius: 16px;
-  background-position: y 100px;
-  background-position-y: 40px;
-  transition-property: background-position, background-position-y;
-  transition-duration: 250ms;
+  background-blend-mode: lighten;
+  transition-property: background-blend-mode;
+  transition-duration: 200ms;
 }
 .notion-collection-card:hover .notion-collection-card-cover {
   filter: brightness(110%);
