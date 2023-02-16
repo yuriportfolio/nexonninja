@@ -2,6 +2,8 @@
 import * as React from 'react'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
+import * as gtag from "../utils/gtag";
+
 import Script from 'next/script'
 // used for rendering equations (optional)
 import 'katex/dist/katex.min.css'
@@ -34,10 +36,14 @@ if (!isServer) {
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
+  
+ useEffect(() => {
+  const handleRouteChange = (url: URL) => {
+    if (gtag) {
 
-  React.useEffect(() => {
-    function onRouteChangeComplete() {
-
+    gtag.pageview(url);
+  }
+      
       if (posthogId) {
         posthog.capture('$pageview')
       }
@@ -48,10 +54,10 @@ export default function App({ Component, pageProps }: AppProps) {
     }
 
     
-    router.events.on('routeChangeComplete', onRouteChangeComplete)
+    router.events.on('routeChangeComplete', handleRouteChange)
 
     return () => {
-      router.events.off('routeChangeComplete', onRouteChangeComplete)
+      router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [router.events])
 
@@ -79,3 +85,7 @@ export default function App({ Component, pageProps }: AppProps) {
     </>
   )
 }
+function useEffect(arg0: () => () => void, arg1: import("next/dist/shared/lib/mitt").MittEmitter<"routeChangeStart" | "beforeHistoryChange" | "routeChangeComplete" | "routeChangeError" | "hashChangeStart" | "hashChangeComplete">[]) {
+  throw new Error('Function not implemented.');
+}
+
