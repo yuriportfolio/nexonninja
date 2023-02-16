@@ -85,7 +85,7 @@
   border-bottom: 0 none;
   transition: filter 150ms linear;
   filter: none;
-  border-bottom-width: 0.1rem;
+  border-bottom-width: 0.2rem;
   background: transparent;
   background-origin: border-box;
   background-repeat: no-repeat;
@@ -94,15 +94,15 @@
 }
 
 .notion-collection-card:hover .notion-collection-card-cover {
-  filter: brightness(120%);
+  filter: brightness(110%);
   border-bottom-color: transparent;
-
-  background-image: linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%);
+  box-shadow: none;
+  background-image: linear-gradient(90.68deg, #31cdec 0.26%, #e533e5 102.37%);
   background-repeat: no-repeat;
   background-position: 0 100%;
-  background-size: 100% 0.1rem;
+  background-size: 110% 0.1rem;
 
-  transition-property: background-position, background-size;
+  transition-property: background-position, background-size, box-shadow;
   transition-duration: 300ms;
 }
 
