@@ -122,11 +122,12 @@
   border-bottom-color: transparent;
   background-image: linear-gradient(90.68deg, #31cdec 0.26%, #e533e5 102.37%);
   background-repeat: no-repeat;
-  background-position: 10% 100%;
-  background-size: 90% 0.15rem;
-  align-content: last baseline;
-
-  transition-property: background-position, background-size;
+  background-position: 0 100%;
+  background-size: 100% 0.15rem;
+align-self: stretch;
+overflow-anchor: auto;
+  border-radius: 16px;
+  transition-property: background-position, background-size,border-radius;
   transition-duration: 300ms;
 }
 
