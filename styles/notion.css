@@ -98,14 +98,14 @@
 }
 .notion-collection-card-cover img:hover {
   transition-timing-function: ease-in-out;
+  border-image: linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%);
   border-image-outset: -50px;
   border-image-slice: 1;
   transition-property: border-image-outset;
   transition-duration: 200ms;
-  border-image: linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%);
 
 }
-.notion-collection-card:hover .notion-collection-card-cover .notion-collection-card-cover img:hover{
+.notion-collection-card:hover .notion-collection-card-cover {
   
   filter: brightness(110%);
   border-bottom-color: transparent;
