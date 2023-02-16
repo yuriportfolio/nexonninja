@@ -106,10 +106,10 @@
 
 }
 .notion-collection-card:hover .notion-collection-card-cover img {
-  border-image: linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%);
-
-  border-image-slice: 1;
-}
+  border-image: linear-gradient(50.68deg, #b439df 0.26%, #e5337e 102.37%);
+  border-image-slice: 10;
+opacity: 90;
+ }
 .notion-collection-card:hover .notion-collection-card-cover {
   
   filter: brightness(110%);
