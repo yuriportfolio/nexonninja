@@ -145,7 +145,7 @@
 }
 
 .notion-page {
-  @apply px-0 sm:px-2;
+  @apply px-10 mx-auto max-w-7xl sm:px-2;
 }
 
 .notion-text {
