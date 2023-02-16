@@ -71,6 +71,8 @@
 
 .notion-collection-card-cover img {
   border-radius: 16px;
+  background-position: top 0;
+
 }
 
 .notion-collection-card {
@@ -95,7 +97,7 @@
 }
 .notion-collection-card-cover img:hover {
   border-radius: 16px;
-  background-position: top 10% ;
+  background-position: top 10%;
 }
 .notion-collection-card:hover .notion-collection-card-cover {
   filter: brightness(110%);
