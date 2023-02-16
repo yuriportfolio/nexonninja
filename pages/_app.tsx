@@ -18,11 +18,15 @@ import 'styles/global.css'
 import 'styles/notion.css'
 // global style overrides for prism theme (optional)
 import 'styles/prism-theme.css'
+import posthog from 'posthog-js'
+
 
 import { bootstrap } from '@/lib/bootstrap-client'
 import {
   googleAnalyticsID,
   isServer,
+  posthogConfig,
+  posthogId
 } from '@/lib/config'
 
 if (!isServer) {
@@ -33,14 +37,22 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   React.useEffect(() => {
-    const handleRouteChange = (url: URL) => {
-      gtag.pageview(url);
-    };
+    function onRouteChangeComplete() {
+
+      if (posthogId) {
+        posthog.capture('$pageview')
+      }
+    }
+
+    if (posthogId) {
+      posthog.init(posthogId, posthogConfig)
+    }
+
     
-    router.events.on('routeChangeComplete', handleRouteChange)
+    router.events.on('routeChangeComplete', onRouteChangeComplete)
 
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
+      router.events.off('routeChangeComplete', onRouteChangeComplete)
     }
   }, [router.events])
 
