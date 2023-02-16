@@ -1,6 +1,5 @@
 import * as React from 'react'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
-import { GA_TRACKING_ID } from "../utils/gtag";
 import { IconContext } from '@react-icons/all-files'
 
 export default class MyDocument extends Document {
@@ -9,12 +8,6 @@ export default class MyDocument extends Document {
       <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
       <Html lang='en'>
         <Head>
-
-          {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-          />
           <script
             dangerouslySetInnerHTML={{
               __html: `
@@ -27,7 +20,7 @@ export default class MyDocument extends Document {
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
               
-                gtag('config', '${GA_TRACKING_ID}');
+                gtag('config', 'G-N8DQCN93PQ');
               </script>
           `
             }}
