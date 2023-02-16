@@ -3,7 +3,6 @@ import * as React from 'react'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
-import * as gtag from "../utils/gtag";
 // used for rendering equations (optional)
 import 'katex/dist/katex.min.css'
 // used for code syntax highlighting (optional)
