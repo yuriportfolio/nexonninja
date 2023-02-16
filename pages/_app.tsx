@@ -85,7 +85,4 @@ export default function App({ Component, pageProps }: AppProps) {
     </>
   )
 }
-function useEffect(arg0: () => () => void, arg1: import("next/dist/shared/lib/mitt").MittEmitter<"routeChangeStart" | "beforeHistoryChange" | "routeChangeComplete" | "routeChangeError" | "hashChangeStart" | "hashChangeComplete">[]) {
-  throw new Error('Function not implemented.');
-}
 
